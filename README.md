@@ -19,49 +19,49 @@ Ensure that the GNU Compiler Collection is installed on your system.
 
 On macOS, you can use Homebrew:
 
-    1. Install Homebrew
+1. Install Homebrew
 
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    2. Install compiler
+2. Install compiler
 
-        brew install gcc
+    brew install gcc
 
-    3. You can check if the compiler is present on your system by using the following steps
+3. You can check if the compiler is present on your system by using the following steps
 
-        a. Check GCC Version:
+    a. Check GCC Version:
 
-            gcc --version
+        gcc --version
 
-        b. Check for g++:
+    b. Check for g++:
 
-            g++ --version
+        g++ --version
 
 ## Getting Started
 
 To use this program, follow these steps:
 
-Clone the repository to your local machine.
+1. Clone the repository to your local machine.
 
     git clone https://github.com/your-username/your-project.git
 
 ### Usage
 
-Open a terminal or command prompt in the root folder.
+1. Open a terminal or command prompt in the root folder.
 
     cd your-project
 
-Compile the project
+2. Compile the project
 
     g++ -o CronParserCLI *.cpp
 
-Now you have access to cron-parser binary. Run the program with a cron expression as an argument. For example:
+3. Now you have access to cron-parser binary. Run the program with a cron expression as an argument. For example:
 
     ./CronParserCLI "*/10 8-18/2 * * 1-5 /usr/bin/find"
 
 You can replace "*/10 8-18/2 * * 1-5 /usr/bin/find" with any cron expression.
 
-The program will output the formatted cron expression as a table:
+4. The program will output the formatted cron expression as a table:
 
     minute        0 10 20 30 40 50 
     hour          8 10 12 14 16 18 
@@ -70,7 +70,7 @@ The program will output the formatted cron expression as a table:
     day of week   1 2 3 4 5 
     command       /usr/bin/find
 
-You can run the tests to see if the code works correctly:
+5. You can run the tests to see if the code works correctly:
 
 ## Features
 
