@@ -9,6 +9,7 @@ CronParser::CronParser(string expression){
 }
 
 void CronParser::parseExpression(){
+    // Split the string by spaces and it will have 6 parts. First five represpenting time, last one command.
 
     vector<string> fieldStrings = Util::splitString(expression, " ");
 
@@ -41,6 +42,7 @@ string CronParser::formatAsTable(){
         ss << endl;
     }
 
+    // Add the command to the output at last.
     ss << left << setw(14) << "command " << this->command << std::endl;
 
     return ss.str();

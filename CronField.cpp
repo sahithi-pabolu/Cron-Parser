@@ -26,12 +26,14 @@ vector<int> CronField::getValues(){
 }
 
 void CronField::parse(){
+    // ANY VALUE
     if (this->fieldString == ANY_VALUE){
         int min = rangeMapping[this->fieldName][0];
         int max = rangeMapping[this->fieldName][1];
 
         this->values = Util::getRangeValues(min, max);
     }
+    // LIST OF VALUES SEPARATED BY A COMMA
     else if(Util::containsToken(this->fieldString, LIST_SEPARATOR)){
         vector<string> parts = Util::splitString(this->fieldString, LIST_SEPARATOR);
         vector<int> additionalValues = {};
@@ -70,12 +72,9 @@ void CronField::parse(){
             }
         }
 
-        // for(auto range: ranges){
-        //     this->values.push_back(stoi(range));
-        // }
     }
+    // CASE WITH INCREMENT VALUES
     else if(Util::containsToken(this->fieldString, INCREMENT_VALUES)){
-        // string stepPart = fieldString.substr(fieldString.find(INCREMENT_VALUES) + 1);
         vector<string> stepParts = Util::splitString(fieldString, INCREMENT_VALUES);
         int minV =0;
         int maxV = 0;
@@ -92,6 +91,7 @@ void CronField::parse(){
 
         this->values = Util::getStepValues(stepParts[1], minV, maxV);
     }
+    // CASE WITH RANGES
     else if(Util::containsToken(this->fieldString, VALUE_RANGE)){
         vector<string> ranges = Util::splitString(this->fieldString, VALUE_RANGE);
 
@@ -100,6 +100,7 @@ void CronField::parse(){
 
         this->values = Util::getRangeValues(min, max);
     }
+    // CASE WITH JUST A NUMBER
     else{
         this->values.push_back(stoi(this->fieldString));
     }
