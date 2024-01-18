@@ -9,7 +9,6 @@ This command line application, written in C++, is a simple cron expression parse
   - [Usage](#usage)
 - [Features](#features)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Prerequisites
 
@@ -94,6 +93,3 @@ You can replace "*/10 8-18/2 * * 1-5 /usr/bin/find" with any cron expression.
 
 ## Contributing
 If you would like to contribute to this project, please feel free to submit issues or pull requests on the GitHub repository.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
