@@ -56,11 +56,41 @@ public:
         return tokens;
     }   
 
-    static vector<int> getRangeValues(int min, int max){
+    static vector<int> getRangeValues(int min, int max, int step = 1){
         vector<int> result;
 
-        for(int i = min; i <= max; i++){
+        for(int i = min; i <= max; i = i + step){
             result.push_back(i);
+        }
+
+        return result;
+    }
+
+    static vector<int> getRanges(int min, int max, string fieldName, int step = 1){
+        vector<int> result;
+        
+        int minActual = rangeMapping[fieldName][0];
+        int maxActual = rangeMapping[fieldName][1];
+
+        vector<int> res1 = getRangeValues(min, maxActual, step);
+        vector<int> res2 = getRangeValues(minActual, max, step);
+
+        result.insert(result.end(), res1.begin(), res1.end());
+        result.insert(result.end(), res2.begin(), res2.end());
+
+        return result;
+    }
+
+    static vector<int> getRangeValues(int min, int max, string fieldName){
+        vector<int> result;
+
+        if(min > max){
+            result = getRanges(min, max, fieldName);
+        }
+        else{
+            for(int i = min; i <= max; i++){
+                result.push_back(i);
+            }
         }
 
         return result;
@@ -76,6 +106,23 @@ public:
 
         return values;
     }
+
+    static vector<int> getStepValues(string& stepPart, int minV, int maxV, string fieldName) {
+        int step = stoi(stepPart);
+        vector<int> values;
+
+        if(minV > maxV){
+             values = getRanges(minV, maxV, fieldName, step);
+        }
+        else{
+            for (int i = minV; i <= maxV; i += step) {
+                values.push_back(i);
+            }
+        }
+
+        return values;
+    }
+
 
     static bool containsToken(string& str, string token) {
         return str.find(token) != string::npos;

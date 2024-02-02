@@ -25,6 +25,13 @@ vector<int> CronField::getValues(){
     return this->values;
 }
 
+/*
+    55-10 0 1,15 * 1-5 /usr/bin/find
+
+    55-max
+    min-10
+*/
+
 void CronField::parse(){
     // ANY VALUE
     if (this->fieldString == ANY_VALUE){
@@ -89,7 +96,7 @@ void CronField::parse(){
             maxV = this->getMax();
         }
 
-        this->values = Util::getStepValues(stepParts[1], minV, maxV);
+        this->values = Util::getStepValues(stepParts[1], minV, maxV, this->fieldName);
     }
     // CASE WITH RANGES
     else if(Util::containsToken(this->fieldString, VALUE_RANGE)){
@@ -98,7 +105,7 @@ void CronField::parse(){
         int min = stoi(ranges[0]);
         int max = stoi(ranges[1]);
 
-        this->values = Util::getRangeValues(min, max);
+        this->values = Util::getRangeValues(min, max, this->fieldName);
     }
     // CASE WITH JUST A NUMBER
     else{

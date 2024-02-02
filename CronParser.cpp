@@ -1,7 +1,6 @@
 #include "CronParser.hpp"
 #include "common.hpp"
 
-
 CronParser::CronParser(string expression){
     this->expression = expression;
     this->fields = {};
@@ -25,7 +24,12 @@ void CronParser::parseExpression(){
         fields.push_back(cronField);
     }
 
-    this->command = fieldStrings[5];
+    for(int i = 5; i < fieldStrings.size(); i++){
+        this->command += fieldStrings[i];
+        if(i != fieldStrings.size()-1){
+             this->command += " ";
+        }
+    }
 }
 
 string CronParser::formatAsTable(){
